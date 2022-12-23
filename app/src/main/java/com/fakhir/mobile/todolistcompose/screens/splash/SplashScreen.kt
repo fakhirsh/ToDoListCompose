@@ -58,7 +58,6 @@ fun SplashScreen(
                 color = MaterialTheme.colors.onPrimary
             )
         }
-
     }
 
     LaunchedEffect(true) {

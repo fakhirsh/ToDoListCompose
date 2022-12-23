@@ -16,7 +16,7 @@ fun BasicToolbar(@StringRes title: Int) {
     TopAppBar(title = { Text(stringResource(title)) }, backgroundColor = toolbarColor())
 }
 
-/*
+
 @Composable
 fun ActionToolbar(
     @StringRes title: Int,
@@ -36,7 +36,7 @@ fun ActionToolbar(
         }
     )
 }
-*/
+
 
 @Composable
 private fun toolbarColor(darkTheme: Boolean = isSystemInDarkTheme()): Color {

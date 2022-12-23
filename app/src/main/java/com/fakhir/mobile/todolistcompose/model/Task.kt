@@ -1,9 +1,9 @@
 package com.fakhir.mobile.todolistcompose.model
 
-data class Task(
-    //@DocumentId val id: String = "",
-    val id: String = "",
+import com.google.firebase.firestore.DocumentId
 
+data class Task(
+    @DocumentId val id: String = "",
     val title: String = "",
     val priority: String = "",
     val dueDate: String = "",
@@ -13,3 +13,4 @@ data class Task(
     val flag: Boolean = false,
     val completed: Boolean = false
 )
+
