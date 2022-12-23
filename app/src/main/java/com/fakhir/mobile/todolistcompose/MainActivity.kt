@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import com.fakhir.mobile.todolistcompose.ui.theme.ToDoListComposeTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
