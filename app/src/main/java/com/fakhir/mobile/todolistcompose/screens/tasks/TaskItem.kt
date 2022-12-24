@@ -1,5 +1,6 @@
 package com.fakhir.mobile.todolistcompose.screens.tasks
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,12 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Shadow
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.fakhir.mobile.todolistcompose.R
 import com.fakhir.mobile.todolistcompose.model.Task
 import com.fakhir.mobile.todolistcompose.model.TaskList
 import com.fakhir.mobile.todolistcompose.ui.theme.BrightOrange
@@ -53,34 +52,31 @@ fun TaskItem(
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = task.title,
-                   // style = MaterialTheme.typography.subtitle2,
-                    style = TextStyle(
-                        //fontSize = 24.sp,
-                        shadow = Shadow(
-                            color = BrightOrange,
-                            offset = Offset(0f, 0f),
-                            blurRadius = 3f
-                        )
-                    )
+                    style = MaterialTheme.typography.subtitle1,
                 )
                 CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-                    Text(text = getDueDateAndTime(task), fontSize = 12.sp)
+                    Text(
+                        text = getDueDateAndTime(task),
+                        style = MaterialTheme.typography.subtitle2,
+                        //fontSize = 12.sp
+                    )
                 }
             }
 
-//            if (task.flag) {
-//                Icon(
-//                    painter = painterResource(AppIcon.ic_flag),
-//                    tint = DarkOrange,
-//                    contentDescription = "Flag"
-//                )
-//            }
+            if (task.flag) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_flag),
+                    tint = BrightOrange,
+                    contentDescription = "Flag"
+                )
+            }
 
 //            DropdownContextMenu(options, Modifier.contextMenu(), onActionClick)
         }
     }
 }
 
+@SuppressLint("SuspiciousIndentation")
 private fun getDueDateAndTime(task: Task): String {
     val stringBuilder = StringBuilder("")
 
