@@ -9,13 +9,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.fakhir.mobile.todolistcompose.model.Task
 import com.fakhir.mobile.todolistcompose.model.TaskList
+import com.fakhir.mobile.todolistcompose.ui.theme.BrightOrange
 
 @Preview(showBackground = true)
 @Composable
@@ -35,7 +37,7 @@ fun TaskItem(
     Card(
         backgroundColor = MaterialTheme.colors.background,
         modifier = Modifier.padding(8.dp, 0.dp, 8.dp, 8.dp),
-
+        elevation = 0.dp
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -49,7 +51,18 @@ fun TaskItem(
             )
 
             Column(modifier = Modifier.weight(1f)) {
-                Text(text = task.title, style = MaterialTheme.typography.subtitle2)
+                Text(
+                    text = task.title,
+                   // style = MaterialTheme.typography.subtitle2,
+                    style = TextStyle(
+                        //fontSize = 24.sp,
+                        shadow = Shadow(
+                            color = BrightOrange,
+                            offset = Offset(0f, 0f),
+                            blurRadius = 3f
+                        )
+                    )
+                )
                 CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
                     Text(text = getDueDateAndTime(task), fontSize = 12.sp)
                 }
