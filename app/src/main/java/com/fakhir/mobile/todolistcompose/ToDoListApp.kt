@@ -1,5 +1,6 @@
 package com.fakhir.mobile.todolistcompose
 
+import android.view.WindowInsets.Type.statusBars
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
@@ -25,18 +26,18 @@ fun ToDoListApp() {
             val navController = rememberNavController()
 
             Scaffold(
-                snackbarHost = {
-                    SnackbarHost(
-                        hostState = it,
-                        modifier = Modifier.fillMaxSize(),
-                        snackbar = { data ->
-                            Snackbar(
-                                snackbarData = data,
-                                contentColor = MaterialTheme.colors.onPrimary,
-                            )
-                        }
-                    )
-                },
+//                snackbarHost = {
+//                    SnackbarHost(
+//                        hostState = it,
+//                        modifier = Modifier.fillMaxSize(),
+//                        snackbar = { data ->
+//                            Snackbar(
+//                                snackbarData = data,
+//                                contentColor = MaterialTheme.colors.onPrimary,
+//                            )
+//                        }
+//                    )
+//                },
                 //scaffoldState = appState.scaffoldState
             ) { innerPaddingModifier ->
                 NavHost(

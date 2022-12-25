@@ -1,6 +1,5 @@
 package com.fakhir.mobile.todolistcompose.screens.splash
 
-import androidx.annotation.Dimension
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -8,20 +7,17 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.fakhir.mobile.todolistcompose.TASKS_SCREEN
 import kotlinx.coroutines.delay
 import com.fakhir.mobile.todolistcompose.R
-import kotlinx.coroutines.NonDisposableHandle.parent
 
 private const val SPLASH_TIMEOUT = 1000L
 
@@ -29,7 +25,7 @@ private const val SPLASH_TIMEOUT = 1000L
 fun SplashScreen(
     //openAndPopUp: (String, String) -> Unit,
     modifier: Modifier = Modifier,
-    //viewModel: SplashViewModel = hiltViewModel()
+    //viewModel: SplashViewModel = viewModel()
     navController: NavController
 ) {
     Column(

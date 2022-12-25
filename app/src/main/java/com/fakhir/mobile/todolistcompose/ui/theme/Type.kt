@@ -14,8 +14,9 @@ val TrenchThin = FontFamily(
     Font(R.font.trench_thin),
 )
 
-val Andalusia = FontFamily(
-    Font(R.font.andalusia),
+val Montserrat = FontFamily(
+    Font(R.font.montserrat_regular),
+    Font(R.font.montserrat_bold, FontWeight.Bold)
 )
 
 // Set of Material typography styles to start with
@@ -25,9 +26,19 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     ),
+    h6 = TextStyle(
+        fontFamily = Montserrat,
+        fontWeight = FontWeight.Bold,
+        fontSize = 30.sp,
+        shadow = Shadow(
+            color = BrightOrange,
+            offset = Offset(0f, 0f),
+            blurRadius = 10f
+        )
+    ),
     subtitle1 = TextStyle(
-        fontFamily = Andalusia,
-        fontWeight = FontWeight.Normal,
+        fontFamily = TrenchThin,
+        fontWeight = FontWeight.Bold,
         fontSize = 24.sp,
         shadow = Shadow(
                         color = BrightOrange,
@@ -43,7 +54,7 @@ val Typography = Typography(
         shadow = Shadow(
             color = BrightOrange,
             offset = Offset(0f, 0f),
-            blurRadius = 3f
+            blurRadius = 4f
         )
 
     ),

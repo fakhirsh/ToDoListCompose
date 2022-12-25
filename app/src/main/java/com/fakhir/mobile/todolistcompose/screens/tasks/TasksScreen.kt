@@ -1,6 +1,7 @@
 package com.fakhir.mobile.todolistcompose.screens.tasks
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
@@ -9,6 +10,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,17 +29,17 @@ fun TasksScreen(
     //viewModel: TasksViewModel = hiltViewModel()
 ) {
     Scaffold(
-        floatingActionButton = {
-            FloatingActionButton(
-                //onClick = { viewModel.onAddClick(openScreen) },
-                onClick = {  },
-                backgroundColor = MaterialTheme.colors.primary,
-                contentColor = MaterialTheme.colors.onPrimary,
-                //modifier = modifier.padding(16.dp)
-            ) {
-                Icon(Icons.Filled.Add, "Add")
-            }
-        }
+//        floatingActionButton = {
+//            FloatingActionButton(
+//                //onClick = { viewModel.onAddClick(openScreen) },
+//                onClick = {  },
+//                backgroundColor = MaterialTheme.colors.primary,
+//                contentColor = MaterialTheme.colors.onPrimary,
+//                //modifier = modifier.padding(16.dp)
+//            ) {
+//                Icon(Icons.Filled.Add, "Add")
+//            }
+//        }
     ) {
         //val tasks = viewModel.tasks.collectAsStateWithLifecycle(emptyList())
         val tasks = TaskList().getTasks()
@@ -58,13 +60,13 @@ fun TasksScreen(
             Column(modifier = Modifier.fillMaxWidth().fillMaxHeight()) {
                 ActionToolbar(
                     title = R.string.tasks,
-                    modifier = Modifier.toolbarActions(),
+                    modifier = Modifier.toolbarActions().padding(top=350.dp),
                     endActionIcon = R.drawable.ic_settings,
                     //endAction = { viewModel.onSettingsClick(openScreen) }
-                    endAction = { }
+                    endAction = { },
                 )
 
-                Spacer(modifier = Modifier.smallSpacer())
+                Spacer(modifier = Modifier.smallSpacer().padding(top=350.dp))
 
                 LazyColumn {
                     items(tasks.size) { index ->
