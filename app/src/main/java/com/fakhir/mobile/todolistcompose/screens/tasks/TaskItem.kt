@@ -54,9 +54,12 @@ fun TaskItem(
 //                onCheckedChange = { onCheckChange() },
                 onCheckedChange = { checkedState.value = it },
                 modifier = Modifier
-                                .padding(8.dp, 0.dp)
-                                //.background(MaterialTheme.colors.onBackground),
-                //color = BrightOrange
+                                .padding(8.dp, 0.dp),
+                colors = CheckboxDefaults.colors(
+                    checkedColor = BrightOrange,
+                    uncheckedColor = BrightOrange,
+                    checkmarkColor = Color.White
+                )
             )
 
             Column(modifier = Modifier.weight(1f)) {

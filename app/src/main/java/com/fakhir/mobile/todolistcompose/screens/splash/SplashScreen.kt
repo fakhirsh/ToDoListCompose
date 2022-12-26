@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.fakhir.mobile.todolistcompose.TASKS_SCREEN
 import kotlinx.coroutines.delay
@@ -23,10 +24,9 @@ private const val SPLASH_TIMEOUT = 1000L
 
 @Composable
 fun SplashScreen(
-    //openAndPopUp: (String, String) -> Unit,
+    openAndPopUp: (String, String) -> Unit,
     modifier: Modifier = Modifier,
-    //viewModel: SplashViewModel = viewModel()
-    navController: NavController
+    viewModel: SplashViewModel
 ) {
     Column(
         modifier =
@@ -58,7 +58,7 @@ fun SplashScreen(
 
     LaunchedEffect(true) {
         delay(SPLASH_TIMEOUT)
-        navController.navigate(TASKS_SCREEN)
+        viewModel.AppStart(openAndPopUp)
     }
 }
 

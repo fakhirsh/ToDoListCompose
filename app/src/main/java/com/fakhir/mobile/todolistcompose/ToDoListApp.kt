@@ -9,8 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.fakhir.mobile.todolistcompose.model.service.AccountService
 import com.fakhir.mobile.todolistcompose.screens.login.LoginScreen
 import com.fakhir.mobile.todolistcompose.screens.splash.SplashScreen
+import com.fakhir.mobile.todolistcompose.screens.splash.SplashViewModel
 import com.fakhir.mobile.todolistcompose.screens.tasks.TasksScreen
 import com.fakhir.mobile.todolistcompose.ui.theme.ToDoListComposeTheme
 
@@ -23,7 +25,9 @@ fun ToDoListApp() {
             color = MaterialTheme.colors.background
         ) {
             //val appState = rememberAppState()
+
             val navController = rememberNavController()
+            val splashViewModel = SplashViewModel()
 
             Scaffold(
 //                snackbarHost = {
@@ -40,13 +44,19 @@ fun ToDoListApp() {
 //                },
                 //scaffoldState = appState.scaffoldState
             ) { innerPaddingModifier ->
+
                 NavHost(
                     navController = navController,
                     startDestination = SPLASH_SCREEN,
                     modifier = Modifier.padding(innerPaddingModifier)
                 ) {
+
                     composable(SPLASH_SCREEN) {
-                        SplashScreen(navController = navController)
+                        SplashScreen(openAndPopUp = { screen, popUpTo ->
+                            navController.navigate(screen) {
+                                popUpTo(popUpTo) { inclusive = true }
+                            }
+                        }, viewModel = splashViewModel)
                     }
                     composable(LOGIN_SCREEN) {
                         LoginScreen()

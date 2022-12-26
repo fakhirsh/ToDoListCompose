@@ -29,17 +29,17 @@ fun TasksScreen(
     //viewModel: TasksViewModel = hiltViewModel()
 ) {
     Scaffold(
-//        floatingActionButton = {
-//            FloatingActionButton(
-//                //onClick = { viewModel.onAddClick(openScreen) },
-//                onClick = {  },
-//                backgroundColor = MaterialTheme.colors.primary,
-//                contentColor = MaterialTheme.colors.onPrimary,
-//                //modifier = modifier.padding(16.dp)
-//            ) {
-//                Icon(Icons.Filled.Add, "Add")
-//            }
-//        }
+        floatingActionButton = {
+            FloatingActionButton(
+                //onClick = { viewModel.onAddClick(openScreen) },
+                onClick = {  },
+                backgroundColor = MaterialTheme.colors.primary,
+                contentColor = MaterialTheme.colors.onPrimary,
+                //modifier = modifier.padding(16.dp)
+            ) {
+                Icon(Icons.Filled.Add, "Add")
+            }
+        }
     ) {
         //val tasks = viewModel.tasks.collectAsStateWithLifecycle(emptyList())
         val tasks = TaskList().getTasks()
@@ -60,13 +60,13 @@ fun TasksScreen(
             Column(modifier = Modifier.fillMaxWidth().fillMaxHeight()) {
                 ActionToolbar(
                     title = R.string.tasks,
-                    modifier = Modifier.toolbarActions().padding(top=350.dp),
+                    modifier = Modifier.toolbarActions(),
                     endActionIcon = R.drawable.ic_settings,
                     //endAction = { viewModel.onSettingsClick(openScreen) }
                     endAction = { },
                 )
 
-                Spacer(modifier = Modifier.smallSpacer().padding(top=350.dp))
+                Spacer(modifier = Modifier.smallSpacer())
 
                 LazyColumn {
                     items(tasks.size) { index ->
