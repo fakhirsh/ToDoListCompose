@@ -6,9 +6,9 @@ import com.fakhir.mobile.todolistcompose.SPLASH_SCREEN
 import com.fakhir.mobile.todolistcompose.TASKS_SCREEN
 import com.fakhir.mobile.todolistcompose.model.service.AccountService
 
-class SplashViewModel : ViewModel() {
+class SplashViewModel(val accountService:AccountService) : ViewModel() {
 
-    private val accountService: AccountService = AccountService()
+    //private val accountService: AccountService = AccountService()
 
     fun AppStart(openAndPopUp: (String, String) -> Unit) {
         if (accountService.hasUser) {
@@ -22,7 +22,7 @@ class SplashViewModel : ViewModel() {
         Log.d("TAG:", "SplashViewModel --> ${accountService.currentUserId}")
     }
 
-    fun createAnonymousAccount(openAndPopUp: (String, String) -> Unit) {
+    private fun createAnonymousAccount(openAndPopUp: (String, String) -> Unit) {
         accountService.createAnonymousAccount()
         openAndPopUp(TASKS_SCREEN, SPLASH_SCREEN)
     }

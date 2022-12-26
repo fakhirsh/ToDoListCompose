@@ -19,7 +19,7 @@ private val DarkColorPalette = darkColors(
 )
 
 private val LightColorPalette = lightColors(
-    primary = GunMetal,
+    primary = TealBlue,
     primaryVariant = Purple700,
     secondary = BrightOrange,
     background = TransparentBlack,

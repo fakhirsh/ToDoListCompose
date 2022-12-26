@@ -10,10 +10,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.fakhir.mobile.todolistcompose.model.service.AccountService
+import com.fakhir.mobile.todolistcompose.model.service.StorageService
 import com.fakhir.mobile.todolistcompose.screens.login.LoginScreen
 import com.fakhir.mobile.todolistcompose.screens.splash.SplashScreen
 import com.fakhir.mobile.todolistcompose.screens.splash.SplashViewModel
 import com.fakhir.mobile.todolistcompose.screens.tasks.TasksScreen
+import com.fakhir.mobile.todolistcompose.screens.tasks.TasksViewModel
 import com.fakhir.mobile.todolistcompose.ui.theme.ToDoListComposeTheme
 
 
@@ -27,7 +29,11 @@ fun ToDoListApp() {
             //val appState = rememberAppState()
 
             val navController = rememberNavController()
-            val splashViewModel = SplashViewModel()
+            val accountService = AccountService()
+            val storageService = StorageService(accountService)
+
+            val splashViewModel = SplashViewModel(accountService)
+            val tasksViewModel = TasksViewModel(storageService)
 
             Scaffold(
 //                snackbarHost = {
@@ -62,7 +68,7 @@ fun ToDoListApp() {
                         LoginScreen()
                     }
                     composable(TASKS_SCREEN) {
-                        TasksScreen()
+                        TasksScreen(viewModel = tasksViewModel)
                     }
 
                 }

@@ -13,6 +13,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,26 +22,28 @@ import com.fakhir.mobile.todolistcompose.R
 import com.fakhir.mobile.todolistcompose.common.composable.ActionToolbar
 import com.fakhir.mobile.todolistcompose.common.ext.smallSpacer
 import com.fakhir.mobile.todolistcompose.common.ext.toolbarActions
+import com.fakhir.mobile.todolistcompose.model.Task
 import com.fakhir.mobile.todolistcompose.model.TaskList
 import com.fakhir.mobile.todolistcompose.ui.theme.BrightOrange
 
-@Preview(showBackground = true)
 @Composable
 fun TasksScreen(
     //openScreen: (String) -> Unit,
     modifier: Modifier = Modifier,
-    //viewModel: TasksViewModel = hiltViewModel()
+    viewModel: TasksViewModel
 ) {
+    Log.d("TAG", "TasksScreen() called...")
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    //viewModel.onAddClick(openScreen)
-                          Log.d("TAG", "TasksScreen: Add button clicked")
+                    viewModel.onAddClick()
                           },
                 backgroundColor = MaterialTheme.colors.primary,
                 contentColor = BrightOrange,
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(8.dp),
+                //shape = RectangleShape,
+
             ) {
                 Icon(Icons.Filled.Add, "Add")
             }
@@ -48,12 +51,17 @@ fun TasksScreen(
     ) {
         //val tasks = viewModel.tasks.collectAsStateWithLifecycle(emptyList())
         val tasks = TaskList().getTasks()
+        //$val tasks = mutableListOf<Task>()
+
         //val options by viewModel.options
+
+        viewModel.getTasks()
 
         Box(
             modifier = Modifier.fillMaxSize()
         ) {
             val imageHeight = 790.dp
+
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
