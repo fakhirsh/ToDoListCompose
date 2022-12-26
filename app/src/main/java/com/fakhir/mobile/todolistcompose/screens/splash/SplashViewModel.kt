@@ -19,6 +19,7 @@ class SplashViewModel : ViewModel() {
             Log.d("TAG:", "SplashViewModel --> No user found: Creating Anonymous user")
             createAnonymousAccount(openAndPopUp)
         }
+        Log.d("TAG:", "SplashViewModel --> ${accountService.currentUserId}")
     }
 
     fun createAnonymousAccount(openAndPopUp: (String, String) -> Unit) {

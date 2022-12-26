@@ -1,5 +1,6 @@
 package com.fakhir.mobile.todolistcompose.screens.tasks
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -10,6 +11,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -20,22 +22,25 @@ import com.fakhir.mobile.todolistcompose.common.composable.ActionToolbar
 import com.fakhir.mobile.todolistcompose.common.ext.smallSpacer
 import com.fakhir.mobile.todolistcompose.common.ext.toolbarActions
 import com.fakhir.mobile.todolistcompose.model.TaskList
+import com.fakhir.mobile.todolistcompose.ui.theme.BrightOrange
 
 @Preview(showBackground = true)
 @Composable
 fun TasksScreen(
     //openScreen: (String) -> Unit,
-    //modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier,
     //viewModel: TasksViewModel = hiltViewModel()
 ) {
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                //onClick = { viewModel.onAddClick(openScreen) },
-                onClick = {  },
+                onClick = {
+                    //viewModel.onAddClick(openScreen)
+                          Log.d("TAG", "TasksScreen: Add button clicked")
+                          },
                 backgroundColor = MaterialTheme.colors.primary,
-                contentColor = MaterialTheme.colors.onPrimary,
-                //modifier = modifier.padding(16.dp)
+                contentColor = BrightOrange,
+                modifier = Modifier.padding(8.dp)
             ) {
                 Icon(Icons.Filled.Add, "Add")
             }
