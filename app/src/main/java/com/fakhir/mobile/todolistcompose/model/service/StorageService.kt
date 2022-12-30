@@ -12,15 +12,29 @@ class StorageService(accountService: AccountService) {
         this.accountService = accountService
     }
 
-    fun getTasks() {
+    fun getTasks(){
         //val userId = accountService.currentUserId
         val userId = "kasf5cvusqgA64vltFHtNeVYqCd2"
+        val taskList = mutableListOf<Task>()
+
         // get list of all documents in a collection
         db.collection(userId).get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    Log.d("TAG", "${document.id} => ${document.data}")
+                    val task = Task(
+                        id = document.id,
+                        title = document.data["title"] as String,
+                        priority = document.data["priority"] as String,
+                        dueDate = document.data["dueDate"] as String,
+                        dueTime = document.data["dueTime"] as String,
+                        description = document.data["description"] as String,
+                        url = document.data["url"] as String,
+                        flag = document.data["flag"] as Boolean,
+                        completed = document.data["completed"] as Boolean
+                    )
+                    taskList.add(task)
                 }
+                Log.d("TAG", "$taskList")
             }
             .addOnFailureListener { exception ->
                 Log.w("TAG", "Error getting documents.", exception)

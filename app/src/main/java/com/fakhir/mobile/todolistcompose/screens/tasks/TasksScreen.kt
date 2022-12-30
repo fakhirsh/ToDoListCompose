@@ -1,5 +1,6 @@
 package com.fakhir.mobile.todolistcompose.screens.tasks
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -26,6 +27,7 @@ import com.fakhir.mobile.todolistcompose.model.Task
 import com.fakhir.mobile.todolistcompose.model.TaskList
 import com.fakhir.mobile.todolistcompose.ui.theme.BrightOrange
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun TasksScreen(
     //openScreen: (String) -> Unit,
@@ -33,6 +35,7 @@ fun TasksScreen(
     viewModel: TasksViewModel
 ) {
     Log.d("TAG", "TasksScreen() called...")
+
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -48,17 +51,15 @@ fun TasksScreen(
                 Icon(Icons.Filled.Add, "Add")
             }
         }
-    ) {
-        //val tasks = viewModel.tasks.collectAsStateWithLifecycle(emptyList())
-        val tasks = TaskList().getTasks()
-        //$val tasks = mutableListOf<Task>()
+    ) { padding ->
 
-        //val options by viewModel.options
-
-        viewModel.getTasks()
+        val name = viewModel.getUserName()
+        val tasks = viewModel.getTasks()
 
         Box(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
         ) {
             val imageHeight = 790.dp
 
@@ -70,13 +71,22 @@ fun TasksScreen(
                 contentDescription = null,
                 contentScale = ContentScale.Crop
             )
-            Column(modifier = Modifier.fillMaxWidth().fillMaxHeight()) {
+            Column(modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()) {
                 ActionToolbar(
                     title = R.string.tasks,
                     modifier = Modifier.toolbarActions(),
                     endActionIcon = R.drawable.ic_settings,
                     //endAction = { viewModel.onSettingsClick(openScreen) }
                     endAction = { },
+                )
+
+                Spacer(modifier = Modifier.smallSpacer())
+
+                Text(
+                    text = name,
+                    style = MaterialTheme.typography.h4
                 )
 
                 Spacer(modifier = Modifier.smallSpacer())
