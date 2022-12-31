@@ -1,6 +1,5 @@
 package com.fakhir.mobile.todolistcompose
 
-import android.view.WindowInsets.Type.statusBars
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
@@ -12,6 +11,9 @@ import androidx.navigation.compose.rememberNavController
 import com.fakhir.mobile.todolistcompose.model.service.AccountService
 import com.fakhir.mobile.todolistcompose.model.service.StorageService
 import com.fakhir.mobile.todolistcompose.screens.login.LoginScreen
+import com.fakhir.mobile.todolistcompose.screens.login.LoginViewModel
+import com.fakhir.mobile.todolistcompose.screens.settings.SettingsScreen
+import com.fakhir.mobile.todolistcompose.screens.settings.SettingsViewModel
 import com.fakhir.mobile.todolistcompose.screens.splash.SplashScreen
 import com.fakhir.mobile.todolistcompose.screens.splash.SplashViewModel
 import com.fakhir.mobile.todolistcompose.screens.tasks.TasksScreen
@@ -34,6 +36,8 @@ fun ToDoListApp() {
 
             val splashViewModel = SplashViewModel(accountService)
             val tasksViewModel = TasksViewModel(storageService)
+            val settingsViewModel = SettingsViewModel(accountService)
+            val loginViewModel = LoginViewModel()
 
             Scaffold(
 //                snackbarHost = {
@@ -64,13 +68,27 @@ fun ToDoListApp() {
                             }
                         }, viewModel = splashViewModel)
                     }
-                    composable(LOGIN_SCREEN) {
-                        LoginScreen()
+                    composable(LOGIN_SCREEN){
+                        LoginScreen(viewModel = loginViewModel)
                     }
                     composable(TASKS_SCREEN) {
-                        TasksScreen(viewModel = tasksViewModel)
+                        TasksScreen(openScreen = { screen ->
+                            navController.navigate(screen)
+                        }, viewModel = tasksViewModel)
                     }
-
+                    composable(SETTINGS_SCREEN){
+                        SettingsScreen(
+                            restartApp = {screen ->
+                                navController.navigate(screen) {
+                                    launchSingleTop = true
+                                    popUpTo(0) { inclusive = true }
+                                }
+                            },
+                            openScreen = { screen ->
+                                navController.navigate(screen)
+                            },
+                            viewModel = settingsViewModel)
+                    }
                 }
             }
         }

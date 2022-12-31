@@ -11,6 +11,8 @@ val Black = Color(0xFF000000)
 val TransparentBlack = Color(0x40000000)
 val FullTransparentBlack = Color(0x00000000)
 val BrightOrange = Color(0xFFe8c56d)
+val DarkOrange = Color(0xFF8a7540)
+
 val Blue = Color(0xFF1e88e5)
 val GunMetal = Color(0xFF2c3e50)
 val Turquoise = Color(0xFF47DDCA)

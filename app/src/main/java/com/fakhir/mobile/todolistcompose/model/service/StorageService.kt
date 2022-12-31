@@ -14,7 +14,7 @@ class StorageService(accountService: AccountService) {
 
     fun getTasks(copyTaskList: (MutableList<Task>) -> Unit) {
         //val userId = accountService.currentUserId
-        val userId = "kasf5cvusqgA64vltFHtNeVYqCd2"
+        val userId = accountService.currentUserId
         val taskList = mutableListOf<Task>()
 
         // get list of all documents in a collection
@@ -41,8 +41,19 @@ class StorageService(accountService: AccountService) {
             .addOnFailureListener { exception ->
                 Log.w("TAG", "Error getting documents.", exception)
             }
+    }
 
-
+    //function to create a new document on firebase database
+    fun addTask(task: Task, refreshList: () -> Unit) {
+        val userId = accountService.currentUserId
+        db.collection(userId).add(task)
+            .addOnSuccessListener { documentReference ->
+                Log.d("TAG", "DocumentSnapshot added with ID: ${documentReference.id}")
+                refreshList()
+            }
+            .addOnFailureListener { e ->
+                Log.w("TAG", "Error adding document", e)
+            }
     }
 
 }
