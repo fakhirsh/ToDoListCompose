@@ -54,6 +54,7 @@ fun TasksScreen(
     ) { padding ->
 
         val name = viewModel.getUserName()
+        viewModel.reloadTasks()
         val tasks = viewModel.getTasks()
 
         Box(

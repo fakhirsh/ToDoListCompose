@@ -12,7 +12,7 @@ class StorageService(accountService: AccountService) {
         this.accountService = accountService
     }
 
-    fun getTasks(){
+    fun getTasks(copyTaskList: (MutableList<Task>) -> Unit) {
         //val userId = accountService.currentUserId
         val userId = "kasf5cvusqgA64vltFHtNeVYqCd2"
         val taskList = mutableListOf<Task>()
@@ -35,6 +35,8 @@ class StorageService(accountService: AccountService) {
                     taskList.add(task)
                 }
                 Log.d("TAG", "$taskList")
+
+                copyTaskList(taskList)
             }
             .addOnFailureListener { exception ->
                 Log.w("TAG", "Error getting documents.", exception)
