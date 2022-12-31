@@ -14,6 +14,8 @@ import com.fakhir.mobile.todolistcompose.screens.login.LoginScreen
 import com.fakhir.mobile.todolistcompose.screens.login.LoginViewModel
 import com.fakhir.mobile.todolistcompose.screens.settings.SettingsScreen
 import com.fakhir.mobile.todolistcompose.screens.settings.SettingsViewModel
+import com.fakhir.mobile.todolistcompose.screens.signup.SignUpScreen
+import com.fakhir.mobile.todolistcompose.screens.signup.SignUpViewModel
 import com.fakhir.mobile.todolistcompose.screens.splash.SplashScreen
 import com.fakhir.mobile.todolistcompose.screens.splash.SplashViewModel
 import com.fakhir.mobile.todolistcompose.screens.tasks.TasksScreen
@@ -35,9 +37,10 @@ fun ToDoListApp() {
             val storageService = StorageService(accountService)
 
             val splashViewModel = SplashViewModel(accountService)
-            val tasksViewModel = TasksViewModel(storageService)
+            val tasksViewModel = TasksViewModel(accountService, storageService)
             val settingsViewModel = SettingsViewModel(accountService)
-            val loginViewModel = LoginViewModel()
+            val loginViewModel = LoginViewModel(accountService)
+            val signUpViewModel = SignUpViewModel(accountService)
 
             Scaffold(
 //                snackbarHost = {
@@ -69,7 +72,11 @@ fun ToDoListApp() {
                         }, viewModel = splashViewModel)
                     }
                     composable(LOGIN_SCREEN){
-                        LoginScreen(viewModel = loginViewModel)
+                        LoginScreen(openAndPopUp = { screen, popUpTo ->
+                            navController.navigate(screen) {
+                                popUpTo(popUpTo) { inclusive = true }
+                            }
+                        },viewModel = loginViewModel)
                     }
                     composable(TASKS_SCREEN) {
                         TasksScreen(openScreen = { screen ->
@@ -88,6 +95,13 @@ fun ToDoListApp() {
                                 navController.navigate(screen)
                             },
                             viewModel = settingsViewModel)
+                    }
+                    composable(SIGN_UP_SCREEN){
+                        SignUpScreen(openAndPopUp = {screen, popUpTo ->
+                            navController.navigate(screen) {
+                                popUpTo(popUpTo) { inclusive = true }
+                            }
+                        }, viewModel = signUpViewModel)
                     }
                 }
             }

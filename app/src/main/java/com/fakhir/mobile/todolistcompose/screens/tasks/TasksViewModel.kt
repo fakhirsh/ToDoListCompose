@@ -3,13 +3,19 @@ package com.fakhir.mobile.todolistcompose.screens.tasks
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
+import com.fakhir.mobile.todolistcompose.R
 import com.fakhir.mobile.todolistcompose.SETTINGS_SCREEN
 import com.fakhir.mobile.todolistcompose.model.Task
 import com.fakhir.mobile.todolistcompose.model.TaskList
+import com.fakhir.mobile.todolistcompose.model.service.AccountService
 import com.fakhir.mobile.todolistcompose.model.service.StorageService
 
-class TasksViewModel(private val storageService: StorageService) : ViewModel() {
+class TasksViewModel(
+    private val accountService: AccountService,
+    private val storageService: StorageService) : ViewModel()
+{
 
     private var _uiState by mutableStateOf(TasksUiState())
 
@@ -37,6 +43,12 @@ class TasksViewModel(private val storageService: StorageService) : ViewModel() {
     }
 
     fun getUserName(): String {
-        return _uiState.userName
+        //return _uiState.userName
+        if(accountService.isAnonymous()) {
+            return "Anonymous"
+        }
+        else{
+            return "FAKHIR"
+        }
     }
 }

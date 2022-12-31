@@ -49,7 +49,7 @@ fun EmailField(value: String, modifier: Modifier = Modifier, onNewValue: (String
             Icon(
                 imageVector = Icons.Default.Email,
                 tint = BrightOrange,
-                contentDescription = "Email"
+                contentDescription = "email"
             )
         },
         colors = TextFieldDefaults.outlinedTextFieldColors(

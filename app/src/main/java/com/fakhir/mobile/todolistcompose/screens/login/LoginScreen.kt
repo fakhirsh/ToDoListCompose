@@ -1,14 +1,13 @@
 package com.fakhir.mobile.todolistcompose.screens.login
 
+import android.util.Log
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -20,9 +19,11 @@ import com.fakhir.mobile.todolistcompose.common.ext.textButton
 
 @Composable
 fun LoginScreen(
+    openAndPopUp: (String, String) -> Unit,
     modifier:Modifier = Modifier,
     viewModel:LoginViewModel
 ) {
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -51,16 +52,17 @@ fun LoginScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 //EmailField(uiState.email, viewModel::onEmailChange, Modifier.fieldModifier())
-                EmailField("Email@email.com", Modifier.fieldModifier()){
-
+                EmailField(viewModel.getEmail(), Modifier.fieldModifier()){
+                    viewModel.setEmail(it)
                 }
                 //PasswordField(uiState.password, viewModel::onPasswordChange, Modifier.fieldModifier())
-                PasswordField("Password", Modifier.fieldModifier()){
-
+                PasswordField(viewModel.getPassword(), Modifier.fieldModifier()){
+                    viewModel.setPassword(it)
                 }
 
                 BasicButton(R.string.sign_in, Modifier.basicButton()) {
-                    //viewModel.onSignInClick(openAndPopUp)
+                    Log.d("TAG", "LoginScreen: Login button clicked")
+                    viewModel.onSignInClick(openAndPopUp)
                 }
                 BasicTextButton(R.string.forgot_password, Modifier.textButton()) {
                     //viewModel.onForgotPasswordClick()
