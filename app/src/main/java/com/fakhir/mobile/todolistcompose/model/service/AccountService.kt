@@ -57,4 +57,15 @@ class AccountService() {
                 }
             }
     }
+
+    fun deleteAccount(onSuccess: () -> Unit) {
+        _auth.currentUser?.delete()?.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.d("TAG", "User account deleted.")
+                onSuccess()
+            } else{
+                Log.d("TAG", "User account deletion failed: ${task.exception?.message.orEmpty()}")
+            }
+        }
+    }
 }

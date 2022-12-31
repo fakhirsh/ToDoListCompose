@@ -56,4 +56,18 @@ class StorageService(accountService: AccountService) {
             }
     }
 
+    fun deleteAllForUser() {
+        val userId = accountService.currentUserId
+        db.collection(userId).get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    db.collection(userId).document(document.id).delete()
+                }
+                Log.w("TAG", "User data deleted")
+            }
+            .addOnFailureListener { exception ->
+                Log.w("TAG", "Error getting documents.", exception)
+            }
+    }
+
 }

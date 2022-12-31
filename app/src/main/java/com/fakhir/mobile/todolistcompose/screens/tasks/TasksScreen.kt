@@ -26,7 +26,7 @@ fun TasksScreen(
     modifier: Modifier = Modifier,
     viewModel: TasksViewModel
 ) {
-    Log.d("TAG", "TasksScreen() called...")
+    Log.d("TAG", "TaskScreen: TasksScreen() called...")
 
     Scaffold(
         floatingActionButton = {

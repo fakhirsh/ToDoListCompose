@@ -4,13 +4,16 @@ import com.fakhir.mobile.todolistcompose.LOGIN_SCREEN
 import com.fakhir.mobile.todolistcompose.SIGN_UP_SCREEN
 import com.fakhir.mobile.todolistcompose.SPLASH_SCREEN
 import com.fakhir.mobile.todolistcompose.model.service.AccountService
+import com.fakhir.mobile.todolistcompose.model.service.StorageService
 
-class SettingsViewModel(private val accountService: AccountService)
+class SettingsViewModel(
+    private val accountService: AccountService,
+    private val storageService: StorageService
+    )
 {
-    private val _uiState = SettingsUIState()
 
     val isAnonymousAccount: Boolean
-        get() = _uiState.isAnonymousAccount
+        get() = accountService.isAnonymous()
 
     fun onLogInClick(openScreen: (String) -> Unit) {
         openScreen(LOGIN_SCREEN)
@@ -26,6 +29,9 @@ class SettingsViewModel(private val accountService: AccountService)
     }
 
     fun onDeleteMyAccountClick(restartApp: (String) -> Unit) {
-        restartApp("DELETE_MY_ACCOUNT_SCREEN")
+        storageService.deleteAllForUser()
+        accountService.deleteAccount() {
+            restartApp(SPLASH_SCREEN)
+        }
     }
 }

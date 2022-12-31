@@ -1,5 +1,6 @@
 package com.fakhir.mobile.todolistcompose.screens.splash
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -28,6 +29,7 @@ fun SplashScreen(
     modifier: Modifier = Modifier,
     viewModel: SplashViewModel
 ) {
+    Log.d("TAG", "SplashScreen: SplashScreen() called...")
     Column(
         modifier =
         modifier
@@ -55,7 +57,7 @@ fun SplashScreen(
             )
         }
     }
-
+    Log.d("TAG", "SplashScreen: About to start Task Screen")
     LaunchedEffect(true) {
         delay(SPLASH_TIMEOUT)
         viewModel.AppStart(openAndPopUp)

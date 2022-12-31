@@ -44,11 +44,10 @@ class TasksViewModel(
 
     fun getUserName(): String {
         //return _uiState.userName
-        if(accountService.isAnonymous()) {
-            return "Anonymous"
-        }
-        else{
-            return "FAKHIR"
+        return if(accountService.isAnonymous()) {
+            "Anonymous"
+        } else{
+            accountService.getUserEmail()
         }
     }
 }

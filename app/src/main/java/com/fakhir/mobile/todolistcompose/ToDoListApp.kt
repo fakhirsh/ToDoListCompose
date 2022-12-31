@@ -38,7 +38,7 @@ fun ToDoListApp() {
 
             val splashViewModel = SplashViewModel(accountService)
             val tasksViewModel = TasksViewModel(accountService, storageService)
-            val settingsViewModel = SettingsViewModel(accountService)
+            val settingsViewModel = SettingsViewModel(accountService, storageService)
             val loginViewModel = LoginViewModel(accountService)
             val signUpViewModel = SignUpViewModel(accountService)
 
