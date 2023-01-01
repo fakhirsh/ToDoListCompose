@@ -1,6 +1,7 @@
 package com.fakhir.mobile.todolistcompose.common.composable
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -12,6 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.fakhir.mobile.todolistcompose.ui.theme.Blue
+import com.fakhir.mobile.todolistcompose.ui.theme.BrightOrange
+import com.fakhir.mobile.todolistcompose.ui.theme.GunMetal
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -35,7 +39,7 @@ fun DropdownContextMenu(
         )
 
         ExposedDropdownMenu(
-            modifier = Modifier.width(180.dp),
+            modifier = Modifier.width(180.dp).background(MaterialTheme.colors.primary),
             expanded = isExpanded,
             onDismissRequest = { isExpanded = false }
         ) {
@@ -46,7 +50,10 @@ fun DropdownContextMenu(
                         onActionClick(selectionOption)
                     }
                 ) {
-                    Text(text = selectionOption)
+                    Text(
+                        text = selectionOption,
+                        color = BrightOrange
+                    )
                 }
             }
         }

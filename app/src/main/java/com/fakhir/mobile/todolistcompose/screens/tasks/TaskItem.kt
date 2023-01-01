@@ -18,26 +18,20 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.fakhir.mobile.todolistcompose.R
+import com.fakhir.mobile.todolistcompose.common.composable.DropdownContextMenu
+import com.fakhir.mobile.todolistcompose.common.ext.contextMenu
 import com.fakhir.mobile.todolistcompose.common.ext.hasDueDate
 import com.fakhir.mobile.todolistcompose.common.ext.hasDueTime
 import com.fakhir.mobile.todolistcompose.model.Task
 import com.fakhir.mobile.todolistcompose.model.TaskList
 import com.fakhir.mobile.todolistcompose.ui.theme.BrightOrange
 
-@Preview(showBackground = true)
-@Composable
-fun TaskItemPreview() {
-    val taskList = TaskList().getTasks()
-
-    TaskItem(task = taskList[0])
-}
-
 @Composable
 fun TaskItem(
     task: Task,
-    //options: List<String>,
-    //onCheckChange: () -> Unit,
-    //onActionClick: (String) -> Unit
+    options: List<String>,
+    onCheckChange: () -> Unit,
+    onActionClick: (String) -> Unit
 ) {
     val checkedState = remember { mutableStateOf(false) }
     Card(
@@ -51,7 +45,7 @@ fun TaskItem(
         ) {
             Checkbox(
                 checked = checkedState.value, //task.completed,
-//                onCheckedChange = { onCheckChange() },
+                //onCheckedChange = { onCheckChange() },
                 onCheckedChange = { checkedState.value = it },
                 modifier = Modifier
                                 .padding(8.dp, 0.dp),
@@ -84,7 +78,7 @@ fun TaskItem(
                 )
             }
 
-//            DropdownContextMenu(options, Modifier.contextMenu(), onActionClick)
+            DropdownContextMenu(options, Modifier.contextMenu(), onActionClick)
         }
     }
 }

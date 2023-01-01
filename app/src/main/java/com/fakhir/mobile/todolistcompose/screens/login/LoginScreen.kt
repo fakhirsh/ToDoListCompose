@@ -5,7 +5,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -23,6 +27,7 @@ fun LoginScreen(
     modifier:Modifier = Modifier,
     viewModel:LoginViewModel
 ) {
+    val msg by remember{ mutableStateOf("") }
 
     Box(
         modifier = Modifier
@@ -38,10 +43,13 @@ fun LoginScreen(
             contentDescription = null,
             contentScale = ContentScale.Crop
         )
-        Column(
-
-        ) {
+        Column {
             BasicToolbar(title = R.string.login_details)
+
+            Text(
+                text = msg,
+                modifier = Modifier.padding(16.dp)
+            )
 
             Column(
                 modifier = modifier

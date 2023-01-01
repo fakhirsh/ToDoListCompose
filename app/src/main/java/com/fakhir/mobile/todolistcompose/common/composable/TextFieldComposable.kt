@@ -44,7 +44,12 @@ fun EmailField(value: String, modifier: Modifier = Modifier, onNewValue: (String
         modifier = modifier,
         value = value,
         onValueChange = { onNewValue(it) },
-        placeholder = { Text(stringResource(R.string.email)) },
+        placeholder = {
+            Text(
+                text = stringResource(R.string.email),
+                color = DarkOrange
+            )
+                      },
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Email,
@@ -54,7 +59,9 @@ fun EmailField(value: String, modifier: Modifier = Modifier, onNewValue: (String
         },
         colors = TextFieldDefaults.outlinedTextFieldColors(
             focusedBorderColor = BrightOrange,
-            unfocusedBorderColor = DarkOrange)
+            unfocusedBorderColor = DarkOrange,
+            focusedLabelColor = BrightOrange,
+            unfocusedLabelColor = DarkOrange)
     )
 }
 
@@ -92,7 +99,11 @@ private fun PasswordField(
         modifier = modifier,
         value = value,
         onValueChange = { onNewValue(it) },
-        placeholder = { Text(text = stringResource(placeholder)) },
+        placeholder = {
+            Text(
+                text = stringResource(placeholder),
+                color = DarkOrange
+            ) },
         leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "Lock", tint = BrightOrange) },
         trailingIcon = {
             IconButton(onClick = { isVisible = !isVisible }) {

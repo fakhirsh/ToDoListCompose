@@ -48,6 +48,7 @@ fun TasksScreen(
         val name = viewModel.getUserName()
         viewModel.reloadTasks()
         val tasks = viewModel.getTasks()
+        val options = listOf("Edit task", "Toggle Flag", "Delete Task")
 
         Box(
             modifier = Modifier
@@ -86,7 +87,17 @@ fun TasksScreen(
 
                 LazyColumn {
                     items(tasks.size) { index ->
-                        TaskItem(task = tasks[index])
+                        var taskItem = tasks[index]
+                        TaskItem(
+                            task = taskItem,
+                            options = options,
+                            onCheckChange = {
+//                                viewModel.onTaskCheckChange(taskItem)
+                                            },
+                            onActionClick = {
+//                                    action -> viewModel.onTaskActionClick(openScreen, taskItem, action)
+                            }
+                        )
                     }
                 }
             }
